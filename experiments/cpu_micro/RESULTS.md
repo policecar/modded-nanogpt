@@ -27,8 +27,7 @@ measure *directions and orderings*, not what happens at 124M parameters.
 | `gpt2-adamw` | GPT-2-style arch + AdamW (tuned baseline) | 1e-3 | 2.4739 | 4.0M (by definition) |
 | `modern-adamw` | + rotary, RMSNorm, QK-norm, ReLU², zero-init, untied head, softcap | 1e-3 | 2.0369 | 2.0M (**2× fewer**) |
 | `modern-muon` | + Muon on hidden matrices | 0.02 | 1.4059 | 1.0M (**4× fewer**) |
-| `shortcut-muon` | + value embeddings, x0 shortcut, U-net skips | 0.05 | 1.4166 | ≤0.5M (**≥8× fewer**, first eval point) |
-| `shortcut-muon` | (same, at lr 0.02) | 0.02 | TBD | TBD |
+| `shortcut-muon` | + value embeddings, x0 shortcut, U-net skips | 0.02 | **1.3920** | ≤0.5M (**≥8× fewer**, crosses by the first eval point) |
 | `modern-muon+ramp64` | **original idea:** ramp CE weight over first 64 positions | 0.02 | 1.4173 | 1.0M |
 | `modern-muon+ema` | **recipe-gap test:** Polyak/EMA weights at eval (decay 0.99) | 0.02 | 1.4059 raw / 1.4275 EMA | 1.0M |
 
@@ -39,8 +38,10 @@ measure *directions and orderings*, not what happens at 124M parameters.
 1. **The recipe replicates.** Each imported tier is a large, unambiguous
    sample-efficiency win at this scale: architecture alone reaches the tuned
    baseline's final loss with 2× fewer tokens; adding Muon makes it ~4×
-   (crossing between 0.5M and 1M tokens); the shortcut bundle is fastest
-   early (crosses the baseline's final loss by the first eval point). The
+   (crossing between 0.5M and 1M tokens); the shortcut bundle is both the
+   best final (1.3920 @ lr 0.02 vs 1.4166 @ 0.05) and
+   the fastest early, crossing the baseline's final loss by the first eval
+   point (≤0.5M tokens, i.e. ≥8× fewer). The
    effect sizes here are larger than at 124M scale (where Muon's measured
    gain is ~1.3–1.5×) — small models on short horizons exaggerate optimizer
    differences — so treat orderings, not magnitudes, as the transferable
@@ -74,3 +75,7 @@ measure *directions and orderings*, not what happens at 124M parameters.
   be read as "no detectable effect".
 * 4M-token horizon; conclusions about long-horizon behavior (e.g., whether
   the AdamW tiers would eventually catch up) are out of scope.
+* The Muon-tier lr sweeps were coarse ({0.02, 0.05}) and the optimum sat at
+  the lower edge; the AdamW sweeps ({5e-4, 1e-3, 3e-3}) had interior optima.
+  A finer Muon sweep could shift the small within-tier differences, not the
+  tier ordering.

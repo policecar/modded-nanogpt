@@ -1,0 +1,108 @@
+{"run": "gpt2-adamw", "lr": 0.0005, "step": 61, "tokens": 499712, "train_loss": 2.9965, "val_loss": 3.0093, "secs": 34.6}
+{"run": "gpt2-adamw", "lr": 0.0005, "step": 122, "tokens": 999424, "train_loss": 2.7258, "val_loss": 2.718, "secs": 68.3}
+{"run": "gpt2-adamw", "lr": 0.0005, "step": 183, "tokens": 1499136, "train_loss": 2.592, "val_loss": 2.6388, "secs": 101.8}
+{"run": "gpt2-adamw", "lr": 0.0005, "step": 244, "tokens": 1998848, "train_loss": 2.6467, "val_loss": 2.6033, "secs": 136.9}
+{"run": "gpt2-adamw", "lr": 0.0005, "step": 305, "tokens": 2498560, "train_loss": 2.5818, "val_loss": 2.576, "secs": 172.3}
+{"run": "gpt2-adamw", "lr": 0.0005, "step": 366, "tokens": 2998272, "train_loss": 2.5325, "val_loss": 2.5502, "secs": 206.6}
+{"run": "gpt2-adamw", "lr": 0.0005, "step": 427, "tokens": 3497984, "train_loss": 2.4667, "val_loss": 2.5296, "secs": 239.4}
+{"run": "gpt2-adamw", "lr": 0.0005, "step": 488, "tokens": 3997696, "train_loss": 2.5439, "val_loss": 2.5185, "secs": 272.0}
+{"run": "gpt2-adamw", "lr": 0.0005, "final_val_loss": 2.506, "params": 1281280, "budget": 4000000, "secs": 281.7}
+{"run": "gpt2-adamw", "lr": 0.001, "step": 61, "tokens": 499712, "train_loss": 2.8111, "val_loss": 2.8297, "secs": 34.0}
+{"run": "gpt2-adamw", "lr": 0.001, "step": 122, "tokens": 999424, "train_loss": 2.6641, "val_loss": 2.6589, "secs": 67.4}
+{"run": "gpt2-adamw", "lr": 0.001, "step": 183, "tokens": 1499136, "train_loss": 2.5575, "val_loss": 2.6078, "secs": 99.5}
+{"run": "gpt2-adamw", "lr": 0.001, "step": 244, "tokens": 1998848, "train_loss": 2.6238, "val_loss": 2.5807, "secs": 131.8}
+{"run": "gpt2-adamw", "lr": 0.001, "step": 305, "tokens": 2498560, "train_loss": 2.5646, "val_loss": 2.562, "secs": 164.8}
+{"run": "gpt2-adamw", "lr": 0.001, "step": 366, "tokens": 2998272, "train_loss": 2.5028, "val_loss": 2.5286, "secs": 197.7}
+{"run": "gpt2-adamw", "lr": 0.001, "step": 427, "tokens": 3497984, "train_loss": 2.446, "val_loss": 2.5013, "secs": 231.1}
+{"run": "gpt2-adamw", "lr": 0.001, "step": 488, "tokens": 3997696, "train_loss": 2.5106, "val_loss": 2.4859, "secs": 263.9}
+{"run": "gpt2-adamw", "lr": 0.001, "final_val_loss": 2.4739, "params": 1281280, "budget": 4000000, "secs": 274.5}
+{"run": "gpt2-adamw", "lr": 0.003, "step": 61, "tokens": 499712, "train_loss": 2.9357, "val_loss": 2.9543, "secs": 33.3}
+{"run": "gpt2-adamw", "lr": 0.003, "step": 122, "tokens": 999424, "train_loss": 2.7586, "val_loss": 2.7403, "secs": 66.0}
+{"run": "gpt2-adamw", "lr": 0.003, "step": 183, "tokens": 1499136, "train_loss": 2.6243, "val_loss": 2.6721, "secs": 100.3}
+{"run": "gpt2-adamw", "lr": 0.003, "step": 244, "tokens": 1998848, "train_loss": 2.6878, "val_loss": 2.6289, "secs": 136.0}
+{"run": "gpt2-adamw", "lr": 0.003, "step": 305, "tokens": 2498560, "train_loss": 2.6055, "val_loss": 2.6043, "secs": 172.9}
+{"run": "gpt2-adamw", "lr": 0.003, "step": 366, "tokens": 2998272, "train_loss": 2.5576, "val_loss": 2.5712, "secs": 208.8}
+{"run": "gpt2-adamw", "lr": 0.003, "step": 427, "tokens": 3497984, "train_loss": 2.4945, "val_loss": 2.544, "secs": 244.8}
+{"run": "gpt2-adamw", "lr": 0.003, "step": 488, "tokens": 3997696, "train_loss": 2.5566, "val_loss": 2.522, "secs": 279.9}
+{"run": "gpt2-adamw", "lr": 0.003, "final_val_loss": 2.5106, "params": 1281280, "budget": 4000000, "secs": 289.5}
+{"run": "modern-adamw", "lr": 0.0005, "step": 61, "tokens": 499712, "train_loss": 3.3355, "val_loss": 3.3551, "secs": 40.8}
+{"run": "modern-adamw", "lr": 0.0005, "step": 122, "tokens": 999424, "train_loss": 3.0342, "val_loss": 3.0202, "secs": 80.7}
+{"run": "modern-adamw", "lr": 0.0005, "step": 183, "tokens": 1499136, "train_loss": 2.6623, "val_loss": 2.7055, "secs": 120.9}
+{"run": "modern-adamw", "lr": 0.0005, "step": 244, "tokens": 1998848, "train_loss": 2.6058, "val_loss": 2.5479, "secs": 162.4}
+{"run": "modern-adamw", "lr": 0.0005, "step": 305, "tokens": 2498560, "train_loss": 2.4146, "val_loss": 2.4098, "secs": 202.2}
+{"run": "modern-adamw", "lr": 0.0005, "step": 366, "tokens": 2998272, "train_loss": 2.3141, "val_loss": 2.3313, "secs": 242.4}
+{"run": "modern-adamw", "lr": 0.0005, "step": 427, "tokens": 3497984, "train_loss": 2.2298, "val_loss": 2.2733, "secs": 283.2}
+{"run": "modern-adamw", "lr": 0.0005, "step": 488, "tokens": 3997696, "train_loss": 2.2611, "val_loss": 2.2413, "secs": 323.7}
+{"run": "modern-adamw", "lr": 0.0005, "final_val_loss": 2.2288, "params": 1245184, "budget": 4000000, "secs": 336.0}
+{"run": "modern-adamw", "lr": 0.001, "step": 61, "tokens": 499712, "train_loss": 3.262, "val_loss": 3.2803, "secs": 41.4}
+{"run": "modern-adamw", "lr": 0.001, "step": 122, "tokens": 999424, "train_loss": 2.8173, "val_loss": 2.8068, "secs": 82.4}
+{"run": "modern-adamw", "lr": 0.001, "step": 183, "tokens": 1499136, "train_loss": 2.5469, "val_loss": 2.5777, "secs": 122.9}
+{"run": "modern-adamw", "lr": 0.001, "step": 244, "tokens": 1998848, "train_loss": 2.4667, "val_loss": 2.4218, "secs": 163.7}
+{"run": "modern-adamw", "lr": 0.001, "step": 305, "tokens": 2498560, "train_loss": 2.2872, "val_loss": 2.2848, "secs": 204.3}
+{"run": "modern-adamw", "lr": 0.001, "step": 366, "tokens": 2998272, "train_loss": 2.1524, "val_loss": 2.1723, "secs": 244.5}
+{"run": "modern-adamw", "lr": 0.001, "step": 427, "tokens": 3497984, "train_loss": 2.0631, "val_loss": 2.1031, "secs": 284.4}
+{"run": "modern-adamw", "lr": 0.001, "step": 488, "tokens": 3997696, "train_loss": 2.0652, "val_loss": 2.0503, "secs": 325.4}
+{"run": "modern-adamw", "lr": 0.001, "final_val_loss": 2.0369, "params": 1245184, "budget": 4000000, "secs": 337.6}
+{"run": "modern-adamw", "lr": 0.003, "step": 61, "tokens": 499712, "train_loss": 3.1853, "val_loss": 3.204, "secs": 41.9}
+{"run": "modern-adamw", "lr": 0.003, "step": 122, "tokens": 999424, "train_loss": 2.9078, "val_loss": 2.8964, "secs": 82.3}
+{"run": "modern-adamw", "lr": 0.003, "step": 183, "tokens": 1499136, "train_loss": 2.5912, "val_loss": 2.6273, "secs": 122.8}
+{"run": "modern-adamw", "lr": 0.003, "step": 244, "tokens": 1998848, "train_loss": 2.541, "val_loss": 2.4999, "secs": 163.7}
+{"run": "modern-adamw", "lr": 0.003, "step": 305, "tokens": 2498560, "train_loss": 2.3822, "val_loss": 2.3646, "secs": 205.0}
+{"run": "modern-adamw", "lr": 0.003, "step": 366, "tokens": 2998272, "train_loss": 2.2551, "val_loss": 2.2737, "secs": 245.6}
+{"run": "modern-adamw", "lr": 0.003, "step": 427, "tokens": 3497984, "train_loss": 2.1558, "val_loss": 2.1937, "secs": 287.1}
+{"run": "modern-adamw", "lr": 0.003, "step": 488, "tokens": 3997696, "train_loss": 2.1599, "val_loss": 2.1463, "secs": 326.5}
+{"run": "modern-adamw", "lr": 0.003, "final_val_loss": 2.1342, "params": 1245184, "budget": 4000000, "secs": 338.5}
+{"run": "modern-muon", "lr": 0.02, "step": 61, "tokens": 499712, "train_loss": 2.4959, "val_loss": 2.5083, "secs": 44.3}
+{"run": "modern-muon", "lr": 0.02, "step": 122, "tokens": 999424, "train_loss": 2.0489, "val_loss": 2.0603, "secs": 89.3}
+{"run": "modern-muon", "lr": 0.02, "step": 183, "tokens": 1499136, "train_loss": 1.6927, "val_loss": 1.7761, "secs": 417.2}
+{"run": "modern-muon", "lr": 0.02, "step": 244, "tokens": 1998848, "train_loss": 1.6208, "val_loss": 1.6697, "secs": 1011.0}
+{"run": "modern-muon", "lr": 0.02, "step": 305, "tokens": 2498560, "train_loss": 1.6013, "val_loss": 1.5988, "secs": 1176.9}
+{"run": "modern-muon", "lr": 0.02, "step": 366, "tokens": 2998272, "train_loss": 1.5504, "val_loss": 1.5222, "secs": 1222.2}
+{"run": "modern-muon", "lr": 0.02, "step": 427, "tokens": 3497984, "train_loss": 1.4917, "val_loss": 1.4598, "secs": 1267.1}
+{"run": "modern-muon", "lr": 0.02, "step": 488, "tokens": 3997696, "train_loss": 1.4421, "val_loss": 1.4109, "secs": 1311.7}
+{"run": "modern-muon", "lr": 0.02, "final_val_loss": 1.4059, "params": 1245184, "budget": 4000000, "secs": 1324.2}
+{"run": "modern-muon", "lr": 0.05, "step": 61, "tokens": 499712, "train_loss": 2.4779, "val_loss": 2.4967, "secs": 44.8}
+{"run": "modern-muon", "lr": 0.05, "step": 122, "tokens": 999424, "train_loss": 2.0306, "val_loss": 2.0258, "secs": 88.3}
+{"run": "modern-muon", "lr": 0.05, "step": 183, "tokens": 1499136, "train_loss": 1.721, "val_loss": 1.8032, "secs": 132.9}
+{"run": "modern-muon", "lr": 0.05, "step": 244, "tokens": 1998848, "train_loss": 1.6511, "val_loss": 1.6969, "secs": 178.3}
+{"run": "modern-muon", "lr": 0.05, "step": 305, "tokens": 2498560, "train_loss": 1.6241, "val_loss": 1.6318, "secs": 223.1}
+{"run": "modern-muon", "lr": 0.05, "step": 366, "tokens": 2998272, "train_loss": 1.5757, "val_loss": 1.5529, "secs": 267.7}
+{"run": "modern-muon", "lr": 0.05, "step": 427, "tokens": 3497984, "train_loss": 1.5323, "val_loss": 1.4923, "secs": 311.5}
+{"run": "modern-muon", "lr": 0.05, "step": 488, "tokens": 3997696, "train_loss": 1.4833, "val_loss": 1.4445, "secs": 354.8}
+{"run": "modern-muon", "lr": 0.05, "final_val_loss": 1.4362, "params": 1245184, "budget": 4000000, "secs": 367.0}
+{"run": "shortcut-muon", "lr": 0.05, "step": 61, "tokens": 499712, "train_loss": 2.4401, "val_loss": 2.4572, "secs": 48.5}
+{"run": "shortcut-muon", "lr": 0.05, "step": 122, "tokens": 999424, "train_loss": 1.9477, "val_loss": 1.9411, "secs": 99.3}
+{"run": "shortcut-muon", "lr": 0.05, "step": 183, "tokens": 1499136, "train_loss": 1.6831, "val_loss": 1.7591, "secs": 146.1}
+{"run": "shortcut-muon", "lr": 0.05, "step": 244, "tokens": 1998848, "train_loss": 1.6343, "val_loss": 1.6675, "secs": 192.2}
+{"run": "shortcut-muon", "lr": 0.05, "step": 305, "tokens": 2498560, "train_loss": 1.59, "val_loss": 1.6025, "secs": 237.3}
+{"run": "shortcut-muon", "lr": 0.05, "step": 366, "tokens": 2998272, "train_loss": 1.5447, "val_loss": 1.5329, "secs": 281.9}
+{"run": "shortcut-muon", "lr": 0.05, "step": 427, "tokens": 3497984, "train_loss": 1.4893, "val_loss": 1.4706, "secs": 327.8}
+{"run": "shortcut-muon", "lr": 0.05, "step": 488, "tokens": 3997696, "train_loss": 1.4546, "val_loss": 1.425, "secs": 376.7}
+{"run": "shortcut-muon", "lr": 0.05, "final_val_loss": 1.4166, "params": 1310747, "budget": 4000000, "secs": 390.4}
+{"run": "modern-muon+ramp64", "lr": 0.02, "step": 61, "tokens": 499712, "train_loss": 2.4974, "val_loss": 2.5184, "secs": 43.9}
+{"run": "modern-muon+ramp64", "lr": 0.02, "step": 122, "tokens": 999424, "train_loss": 2.1086, "val_loss": 2.1304, "secs": 88.8}
+{"run": "modern-muon+ramp64", "lr": 0.02, "step": 183, "tokens": 1499136, "train_loss": 1.7281, "val_loss": 1.8207, "secs": 133.3}
+{"run": "modern-muon+ramp64", "lr": 0.02, "step": 244, "tokens": 1998848, "train_loss": 1.6341, "val_loss": 1.683, "secs": 178.3}
+{"run": "modern-muon+ramp64", "lr": 0.02, "step": 305, "tokens": 2498560, "train_loss": 1.5983, "val_loss": 1.6144, "secs": 221.3}
+{"run": "modern-muon+ramp64", "lr": 0.02, "step": 366, "tokens": 2998272, "train_loss": 1.5356, "val_loss": 1.5388, "secs": 263.4}
+{"run": "modern-muon+ramp64", "lr": 0.02, "step": 427, "tokens": 3497984, "train_loss": 1.4877, "val_loss": 1.469, "secs": 305.7}
+{"run": "modern-muon+ramp64", "lr": 0.02, "step": 488, "tokens": 3997696, "train_loss": 1.4383, "val_loss": 1.4234, "secs": 348.9}
+{"run": "modern-muon+ramp64", "lr": 0.02, "final_val_loss": 1.4173, "params": 1245184, "budget": 4000000, "secs": 361.0}
+{"run": "modern-muon+ema", "lr": 0.02, "step": 61, "tokens": 499712, "train_loss": 2.4959, "val_loss": 2.5083, "secs": 44.2, "val_loss_ema": 3.3965}
+{"run": "modern-muon+ema", "lr": 0.02, "step": 122, "tokens": 999424, "train_loss": 2.0489, "val_loss": 2.0603, "secs": 90.8, "val_loss_ema": 2.6221}
+{"run": "modern-muon+ema", "lr": 0.02, "step": 183, "tokens": 1499136, "train_loss": 1.6927, "val_loss": 1.7761, "secs": 137.1, "val_loss_ema": 2.1945}
+{"run": "modern-muon+ema", "lr": 0.02, "step": 244, "tokens": 1998848, "train_loss": 1.6208, "val_loss": 1.6697, "secs": 184.7, "val_loss_ema": 1.8413}
+{"run": "modern-muon+ema", "lr": 0.02, "step": 305, "tokens": 2498560, "train_loss": 1.6013, "val_loss": 1.5988, "secs": 233.0, "val_loss_ema": 1.6452}
+{"run": "modern-muon+ema", "lr": 0.02, "step": 366, "tokens": 2998272, "train_loss": 1.5504, "val_loss": 1.5222, "secs": 282.3, "val_loss_ema": 1.5393}
+{"run": "modern-muon+ema", "lr": 0.02, "step": 427, "tokens": 3497984, "train_loss": 1.4917, "val_loss": 1.4598, "secs": 330.4, "val_loss_ema": 1.4765}
+{"run": "modern-muon+ema", "lr": 0.02, "step": 488, "tokens": 3997696, "train_loss": 1.4421, "val_loss": 1.4109, "secs": 379.0, "val_loss_ema": 1.4343}
+{"run": "modern-muon+ema", "lr": 0.02, "final_val_loss": 1.4059, "params": 1245184, "budget": 4000000, "secs": 395.5, "final_val_loss_ema": 1.4275}
+{"run": "shortcut-muon", "lr": 0.02, "step": 61, "tokens": 499712, "train_loss": 2.4277, "val_loss": 2.4406, "secs": 48.3}
+{"run": "shortcut-muon", "lr": 0.02, "step": 122, "tokens": 999424, "train_loss": 1.9259, "val_loss": 1.9204, "secs": 96.8}
+{"run": "shortcut-muon", "lr": 0.02, "step": 183, "tokens": 1499136, "train_loss": 1.6382, "val_loss": 1.7184, "secs": 143.8}
+{"run": "shortcut-muon", "lr": 0.02, "step": 244, "tokens": 1998848, "train_loss": 1.5848, "val_loss": 1.6306, "secs": 190.8}
+{"run": "shortcut-muon", "lr": 0.02, "step": 305, "tokens": 2498560, "train_loss": 1.5666, "val_loss": 1.5742, "secs": 236.9}
+{"run": "shortcut-muon", "lr": 0.02, "step": 366, "tokens": 2998272, "train_loss": 1.5113, "val_loss": 1.5, "secs": 282.7}
+{"run": "shortcut-muon", "lr": 0.02, "step": 427, "tokens": 3497984, "train_loss": 1.47, "val_loss": 1.4432, "secs": 328.1}
+{"run": "shortcut-muon", "lr": 0.02, "step": 488, "tokens": 3997696, "train_loss": 1.4248, "val_loss": 1.4002, "secs": 373.4}
+{"run": "shortcut-muon", "lr": 0.02, "final_val_loss": 1.392, "params": 1310747, "budget": 4000000, "secs": 386.0}
