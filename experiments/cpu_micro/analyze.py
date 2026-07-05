@@ -9,9 +9,11 @@ for line in open(os.path.join(HERE, "results.jsonl")):
     r = json.loads(line)
     key = (r["run"], r["lr"])
     if "final_val_loss" in r:
-        finals[key] = r["final_val_loss"]
-    else:
-        curves[key].append((r["tokens"], r["val_loss"]))
+        finals[key] = min(r["final_val_loss"], r.get("final_val_loss_ema", float("inf")))
+        if "final_val_loss_ema" in r:
+            print(f'  [{r["run"]} lr={r["lr"]}] raw {r["final_val_loss"]} vs EMA {r["final_val_loss_ema"]}')
+    elif "val_loss" in r:
+        curves[key].append((r["tokens"], min(r["val_loss"], r.get("val_loss_ema", float("inf")))))
 
 # best lr per variant by final val loss
 best = {}
@@ -19,7 +21,8 @@ for (run, lr), v in finals.items():
     if run not in best or v < finals[(run, best[run])]:
         best[run] = lr
 
-ORDER = ["gpt2-adamw", "modern-adamw", "modern-muon", "shortcut-muon"]
+ORDER = ["gpt2-adamw", "modern-adamw", "modern-muon", "shortcut-muon",
+         "modern-muon+ramp64", "modern-muon+ema"]
 present = [r for r in ORDER if r in best]
 print(f"{'variant':<15} {'best lr':>8} {'final val loss':>15}  (all lrs tried)")
 for run in present:
@@ -45,7 +48,8 @@ try:
     import matplotlib.pyplot as plt
     fig, ax = plt.subplots(figsize=(7, 4.5), dpi=140)
     colors = {"gpt2-adamw": "#888888", "modern-adamw": "#4477aa",
-              "modern-muon": "#ee6677", "shortcut-muon": "#228833"}
+              "modern-muon": "#ee6677", "shortcut-muon": "#228833",
+              "modern-muon+ramp64": "#ccbb44", "modern-muon+ema": "#aa3377"}
     for run in present:
         cur = sorted(curves[(run, best[run])])
         ax.plot([t / 1e6 for t, _ in cur], [v for _, v in cur],
