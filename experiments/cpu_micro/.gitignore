@@ -1,3 +1,4 @@
 *.npy
-runner.log
+runner*.log
 results.jsonl
+nohup.out

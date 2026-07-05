@@ -34,20 +34,22 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 # ----------------------------------------------------------------- data
 
-def load_tokens(name):
+def load_seqs(name):
+    # (N, 513) uint8 windows: 512 input bytes + 1 for the shifted target,
+    # pre-shuffled with a fixed seed by make_data.py (see v2 design note there)
     return torch.from_numpy(np.load(os.path.join(HERE, name)).astype(np.int64))
 
 class Stream:
-    """Deterministic sequential batch stream (identical for every run)."""
-    def __init__(self, tokens, B, T):
-        self.tokens, self.B, self.T, self.pos = tokens, B, T, 0
+    """Deterministic batch stream over pre-shuffled windows (identical for every run)."""
+    def __init__(self, seqs, B, T):
+        assert seqs.size(1) == T + 1
+        self.seqs, self.B, self.pos = seqs, B, 0
     def next(self):
-        n = self.B * self.T
-        if self.pos + n + 1 > len(self.tokens):
+        if self.pos + self.B > len(self.seqs):
             self.pos = 0
-        buf = self.tokens[self.pos : self.pos + n + 1]
-        self.pos += n
-        return buf[:-1].view(self.B, self.T), buf[1:].view(self.B, self.T)
+        buf = self.seqs[self.pos : self.pos + self.B]
+        self.pos += self.B
+        return buf[:, :-1], buf[:, 1:]
 
 # ----------------------------------------------------------------- model
 
@@ -246,7 +248,7 @@ def evaluate(model, val_tokens, B, T, max_tokens):
 
 def run(name, cfg, opt_name, lr, budget, out, B=16, T=512, evals=8, final_eval_tokens=524288):
     torch.manual_seed(42)
-    train_tokens, val_tokens = load_tokens("train_tokens.npy"), load_tokens("val_tokens.npy")
+    train_tokens, val_tokens = load_seqs("train_seqs.npy"), load_seqs("val_seqs.npy")
     model = MicroGPT(cfg)
     nparams = sum(p.numel() for p in model.parameters())
     steps = budget // (B * T)
@@ -336,7 +338,7 @@ if __name__ == "__main__":
     cfg, opt = VARIANTS[a.variant]
     if a.bench:
         torch.manual_seed(42)
-        tr = load_tokens("train_tokens.npy")
+        tr = load_seqs("train_seqs.npy")
         m, s = MicroGPT(cfg), Stream(tr, 16, 512)
         for _ in range(2):  # warm
             x, y = s.next(); m(x, y).backward(); m.zero_grad(set_to_none=True)
