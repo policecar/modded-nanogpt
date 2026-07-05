@@ -173,7 +173,7 @@ class MicroGPT(nn.Module):
                 nn.init.normal_(b.att.proj.weight, std=0.02 / math.sqrt(2 * cfg.layers))
                 nn.init.normal_(b.mlp.proj.weight, std=0.02 / math.sqrt(2 * cfg.layers))
 
-    def forward(self, idx, targets):
+    def forward(self, idx, targets, loss_w=None):
         B, T = idx.shape
         x = self.wte(idx)
         if self.wpe is not None:
@@ -199,7 +199,12 @@ class MicroGPT(nn.Module):
         if self.cfg.softcap:
             c = self.cfg.softcap
             logits = c * torch.tanh(logits / c)
-        return F.cross_entropy(logits.view(-1, logits.size(-1)), targets.reshape(-1))
+        if loss_w is None:
+            return F.cross_entropy(logits.view(-1, logits.size(-1)), targets.reshape(-1))
+        # position-weighted CE (training only): downweight context-poor early positions
+        lo = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.reshape(-1),
+                             reduction="none").view(B, T)
+        return (lo * loss_w).sum() / (B * loss_w.sum())
 
 # ----------------------------------------------------------------- muon
 
@@ -246,10 +251,17 @@ def evaluate(model, val_tokens, B, T, max_tokens):
     model.train()
     return sum(losses) / len(losses)
 
-def run(name, cfg, opt_name, lr, budget, out, B=16, T=512, evals=8, final_eval_tokens=524288):
+def run(name, cfg, opt_name, lr, budget, out, B=16, T=512, evals=8, final_eval_tokens=524288,
+        ramp=0, ema=0.0):
+    # ramp>0: linearly ramp per-position CE weight over the first `ramp` positions
+    #         during training (eval is always unweighted).
+    # ema>0:  maintain a Polyak average of weights with this decay; report val loss
+    #         of both raw and averaged weights.
     torch.manual_seed(42)
     train_tokens, val_tokens = load_seqs("train_seqs.npy"), load_seqs("val_seqs.npy")
     model = MicroGPT(cfg)
+    loss_w = torch.clamp(torch.arange(1, T + 1).float() / ramp, max=1.0) if ramp else None
+    ema_state = {k: v.detach().clone() for k, v in model.state_dict().items()} if ema else None
     nparams = sum(p.numel() for p in model.parameters())
     steps = budget // (B * T)
     print(f"[{name} lr={lr}] params={nparams} steps={steps}", flush=True)
@@ -289,7 +301,7 @@ def run(name, cfg, opt_name, lr, budget, out, B=16, T=512, evals=8, final_eval_t
     t0 = time.time()
     for step in range(steps):
         x, y = stream.next()
-        loss = model(x, y)
+        loss = model(x, y, loss_w)
         loss.backward()
         if opt_name == "muon":  # momentum warmup over first 20% of training
             frac = min(step / max(1, int(0.2 * steps)), 1.0)
@@ -300,17 +312,29 @@ def run(name, cfg, opt_name, lr, budget, out, B=16, T=512, evals=8, final_eval_t
         for s in scheds:
             s.step()
         model.zero_grad(set_to_none=True)
+        if ema_state is not None:
+            with torch.no_grad():
+                for k, v in model.state_dict().items():
+                    ema_state[k].lerp_(v.float(), 1 - ema) if v.is_floating_point() else ema_state[k].copy_(v)
         if (step + 1) % eval_every == 0 or step == steps - 1:
             vl = evaluate(model, val_tokens, B, T, 131072)
             rec = dict(run=name, lr=lr, step=step + 1, tokens=(step + 1) * B * T,
                        train_loss=round(loss.item(), 4), val_loss=round(vl, 4),
                        secs=round(time.time() - t0, 1))
+            if ema_state is not None:
+                backup = {k: v.detach().clone() for k, v in model.state_dict().items()}
+                model.load_state_dict(ema_state)
+                rec["val_loss_ema"] = round(evaluate(model, val_tokens, B, T, 131072), 4)
+                model.load_state_dict(backup)
             print(json.dumps(rec), flush=True)
             with open(out, "a") as f:
                 f.write(json.dumps(rec) + "\n")
     final = evaluate(model, val_tokens, B, T, final_eval_tokens)
     rec = dict(run=name, lr=lr, final_val_loss=round(final, 4), params=nparams,
                budget=budget, secs=round(time.time() - t0, 1))
+    if ema_state is not None:
+        model.load_state_dict(ema_state)
+        rec["final_val_loss_ema"] = round(evaluate(model, val_tokens, B, T, final_eval_tokens), 4)
     print(json.dumps(rec), flush=True)
     with open(out, "a") as f:
         f.write(json.dumps(rec) + "\n")
@@ -334,6 +358,9 @@ if __name__ == "__main__":
     ap.add_argument("--budget", type=int, default=2_000_000)
     ap.add_argument("--out", default=os.path.join(HERE, "results.jsonl"))
     ap.add_argument("--bench", action="store_true")
+    ap.add_argument("--ramp", type=int, default=0, help="ramp CE weight over first N positions (train only)")
+    ap.add_argument("--ema", type=float, default=0.0, help="Polyak weight-averaging decay (0=off)")
+    ap.add_argument("--tag", default="", help="suffix for the run name")
     a = ap.parse_args()
     cfg, opt = VARIANTS[a.variant]
     if a.bench:
@@ -348,4 +375,5 @@ if __name__ == "__main__":
         dt = (time.time() - t) / n
         print(f"{a.variant}: {dt:.2f}s/step, {16*512/dt:.0f} tok/s (fwd+bwd)")
     else:
-        run(a.variant, cfg, opt, a.lr, a.budget, a.out)
+        name = a.variant + (f"+{a.tag}" if a.tag else "")
+        run(name, cfg, opt, a.lr, a.budget, a.out, ramp=a.ramp, ema=a.ema)
